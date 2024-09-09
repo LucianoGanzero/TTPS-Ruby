@@ -3,7 +3,7 @@
 # sea posible):
 puts "EJERCICIO 1"
 #Symbols
-:my_simbol
+puts :my_simbol
 puts "El simbolo #{:my_simbol} es un #{:my_simbol.class} con object_id #{:my_simbol.object_id}"
 
 
