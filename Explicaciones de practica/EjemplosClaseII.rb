@@ -15,5 +15,5 @@ class String
     cadena_limpia = self.gsub(/\W/, "").downcase
 
     cadena_limpia >= 3 && cadena_limpia == cadena_limpia.reverse
+  end
 end
-
