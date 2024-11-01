@@ -1,0 +1,9 @@
+## Analizá y probá los siguientes métodos, que presentan una lógica similar, pero ubican el manejo de excepciones en distintas partes del código. ¿Qué resultado se obtiene en cada caso? ¿Por qué? ##
+
+**opcion_1 =>** La opción 1 no ejecuta el c.inspect, solo devuelve 0 porque es lo que está establecido en el rescue. Es decir, se produce la excepción en el bloque de código, el rescue la levanta y lo que hace es devolver 0, y termina la ejecución de la función.  
+
+**opcion_2 =>** La opción 2 imprime 0 y devuelve nil, porque al resultado de la ejecución del bloque de codigo se lo asigna a la variable 'c', y luego ejecuta el c.inspect por fuera del bloque begin rescue. El resultado del bloque begin rescue, es, justamente, 0, porque se produce una excepción, rescue la levanta y devuelve 0, y este valor es asignado a 'c'.
+
+**opcion 3 =>** La opción 3, al estar el rescue fuera del bloque, se comporta igual que la opción 2. El bloque se ejecuta, y si se produce un error en la ejecución, es rescatado por rescue, que devuelve 0, valor que es asignado a 'c' y luego impreso.
+
+**opcion 4 =>** La opción 4 devuelve el arreglo, con un '0' en todos los lugares donde la ejecución del bloque produjo una excepción. Esto es porque, al estar el rescue dentro del bloque, el rescue aplica a cada una de las operaciones que se dan en la iteración. Es decir, no aplica a la iteración en si, que se sigue ejecutando, sino a la multiplicación. Entonces, cuando falla la multiplicación por dos operandos que no pueden multiplicarse, el rescue la rescata y devuelve '0', y sigue la iteración con el siguiente item del arreglo.
