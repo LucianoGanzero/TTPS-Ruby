@@ -1,7 +1,12 @@
-# 7. Suponé que tenés el siguiente script y se te pide que lo hagas resiliente (tolerante a fallos), in‑
-# tentando siempre que se pueda recuperar la situación y volver a intentar la operación que falló.
-# Realizá las modificaciones que consideres necesarias para lograr que este script sea más robus‑
-# to
+# 8. Partiendo del script que modificaste en el inciso anterior, implementá una nueva clase de ex‑
+# cepción que se utilice para indicar que la entrada del usuario no es un valor numérico entero
+# válido. ¿De qué clase de la jerarquía de Exception heredaría?
+
+class InvalidIntegerError < ArgumentError
+  def initialize(msg = 'La entrada no es un número entero válido')
+    super(msg)
+  end
+end
 
 # Este script lee una secuencia de no menos de 15 números desde teclado y luego imprime el resultado de la división # de cada número por su entero inmediato anterior.
 # Como primer paso se pide al usuario que indique la cantidad de números que ingresará.
@@ -11,7 +16,11 @@ while cantidad < 15
     puts 'Cuál es la cantidad de números que ingresará? Debe ser al menos 15'
     cantidad = Integer(gets)
   rescue ArgumentError
-    puts 'Debe ingresar solo números'
+    begin
+      raise InvalidIntegerError
+    rescue InvalidIntegerError => e
+      puts e.message
+    end
     retry
   end
 end
@@ -21,7 +30,11 @@ numeros = 1.upto(cantidad).map do
     puts 'Ingrese un número'
     Integer(gets)
   rescue ArgumentError
-    puts 'Solo puede ingresar números'
+    begin
+      raise InvalidIntegerError
+    rescue InvalidIntegerError => e
+      puts e.message
+    end
     retry
   end
 end
